@@ -3,20 +3,23 @@
 # 安装
 
 ```
-vagrant up
-vagrant ssh
+# 第一次启动虚拟机
+[host]$ vagrant up
+[host]$ vagrant ssh
 
-$ sudo yum update
+# 升级系统并重启
+[docker101vm]$ sudo yum update
+[docker101vm]$ exit
+[host]$ vagrant reload
+[host]$ vagrant ssh
 
-exit
-vagrant reload
-vagrant ssh
+# 重启后重新编译 VirtualBox Guest Additions
+[docker101vm]$ sudo yum -y install kernel-devel-3.10.0-229.7.2.el7.x86_64
+[docker101vm]$ sudo yum install -y gcc
 
-# rebuild VirtualBox Guest Additions
-sudo yum -y install kernel-devel-3.10.0-229.7.2.el7.x86_64
-sudo yum install -y gcc
+[docker101vm]$ sudo /etc/init.d/vboxadd setup
 
-sudo /etc/init.d/vboxadd setup
+# 之后再向上面那样重启即可。
 
 ```
 
@@ -43,18 +46,19 @@ Remember that you will have to log out and back in for this to take effect!
 
 启动
 ```
-sudo service docker start
+sudo systemctl start docker
 ```
 
 自启动
 ```
-sudo service enable start
+sudo systemctl enable docker
 ```
 
 
 ```
 sudo vi /lib/systemd/system/docker.service
 /usr/bin/docker --registry-mirror=http://liubin.m.alauda.cn -d -H fd://
+
 sudo systemctl daemon-reload
 ```
 
