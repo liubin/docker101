@@ -1,0 +1,20 @@
+nginx:
+  image: "nginx:1.9"
+  ports:
+    - 5043:443
+  links:
+    - registry:registry
+  volumes:
+    - /vagrant/lesson-05/auth/:/etc/nginx/conf.d
+
+registry:
+  image: registry:2
+  ports:
+    - 127.0.0.1:5000:5000
+  environment:
+    REGISTRY_STORAGE_FILESYSTEM_ROOTDIRECTORY: /data
+    REGISTRY_HTTP_TLS_CERTIFICATE: /certs/domain.crt
+    REGISTRY_HTTP_TLS_KEY: /certs/domain.key
+  volumes:
+    - /vagrant/lesson-05/data:/data
+    - /vagrant/lesson-05/certs:/certs

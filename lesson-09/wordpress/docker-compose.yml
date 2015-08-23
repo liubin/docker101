@@ -1,0 +1,12 @@
+web:
+  image: "index.alauda.cn/library/wordpress:latest"
+  links:
+    - db:mysql
+  ports:
+    - 8080:80
+
+db:
+  image: mariadb
+  environment:
+    MYSQL_ROOT_PASSWORD: rootASDF
+

@@ -1,0 +1,13 @@
+web:
+  extends:
+    file: common.yml
+    service: web
+  volumes:
+    - .:/code
+  links:
+    - redis
+  environment:
+    - MODE=PRODUCTION
+
+redis:
+  image: redis

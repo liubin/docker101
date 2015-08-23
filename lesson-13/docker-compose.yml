@@ -1,0 +1,20 @@
+wordpress:
+  image: index.alauda.cn/library/wordpress:3
+  links:
+    - db:mysql
+  ports:
+    - "80/http"
+  environment:
+    - WORDPRESS_DB_PASSWORD: password
+  volumes:
+    - /var/www/html:10
+  size: M
+
+db:
+  image: index.alauda.cn/library/mysql:5
+  ports:
+    - "3306/tcp"
+  environment:
+    - MYSQL_ROOT_PASSWORD: password
+  volumes:
+    - /var/lib/mysql:10
