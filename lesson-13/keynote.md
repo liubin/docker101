@@ -1,7 +1,8 @@
 # Docker入门与实践
 
 Lesson-13 Docker CaaS
-刘斌
+刘斌@OneAPM
+2015年8月
 
 # 本节概要
 
@@ -83,4 +84,12 @@ Lesson-13 Docker CaaS
 # alauda compose
 
 - 创建Wordpress应用
+
+
+# 课后作业
+
+- 试用alauda.cn
+- 创建有状态容器
+- 使用volume
+- 进行volume的备份和恢复
 

@@ -1,7 +1,8 @@
 # Docker入门与实践
 
 Lesson-10 Docker Machine
-刘斌
+刘斌@OneAPM
+2015年8月
 
 # 本节概要
 
@@ -134,4 +135,9 @@ docker-machine create \
 - kill（强制停止）
 
 
+
+# 课后作业
+
+- 使用VirtualBox创建Docker主机
+- 有条件的话可以在云服务器上创建Docker主机
 

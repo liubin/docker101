@@ -1,7 +1,8 @@
 # Docker入门与实践
 
 Lesson-05 构建私有镜像服务器
-刘斌
+刘斌@OneAPM
+2015年8月
 
 # 本节概要
 
@@ -122,3 +123,9 @@ $ docker run -d -p 5000:5000 \
 - 开源：MariaDB + Rails + Registry
 - 演示
 
+# 课后作业
+
+- 运行自己的私有Registry
+- 构建一个镜像并push到该Registry
+- 在本地删除该镜像
+- 从私有镜像pull出来

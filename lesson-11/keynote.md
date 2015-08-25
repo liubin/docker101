@@ -1,7 +1,8 @@
 # Docker入门与实践
 
 Lesson-11 Docker Swarm
-刘斌
+刘斌@OneAPM
+2015年8月
 
 # 本节概要
 
@@ -196,5 +197,9 @@ docker run -e affinity:com.example.type==frontend
 
 - 避免容器被分配到不健康的节点
 
+# 课后作业
+
+- 使用Docker Machine创建Swarm集群
+- 1个master，2个node
 
 

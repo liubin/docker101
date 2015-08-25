@@ -1,7 +1,8 @@
 # Docker入门与实践
 
 Lesson-06 Docker Hub和自动构建
-刘斌
+刘斌@OneAPM
+2015年8月
 
 # 本节概要
 
@@ -112,3 +113,10 @@ Lesson-06 Docker Hub和自动构建
 - 读取私有仓库
 - 向非自动构建仓库push
 - Admin权限，修改仓库的描述，写作者；公开、私有以及删除仓库
+
+# 课后作业
+
+- 注册GitHub/Bitbucket和Docker Hub
+- 创建自动构建
+- 提交Dockerfile进行自动构建
+- 本地docker pull下载该自动构建镜像

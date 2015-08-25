@@ -1,6 +1,8 @@
 # Docker入门与实践
 
 刘斌，软件工程师@OneAPM
+2015年8月
+
 
 # 课程简介
 
@@ -17,6 +19,11 @@
 
 - 官方文档（https://docs.docker.com/）
 - 《第一本Docker书》
+
+# 致谢
+
+- 开课吧
+- 灵雀云（http://www.alauda.cn/）
 
 # 什么是Docker
 
@@ -146,6 +153,14 @@
 - user： 用户隔离（3.8）
 
 
+
+# Docker将会给这些领域带来影响
+
+- Software development
+- Deploy & Delivery
+- DevOps
+
+
 # 12-Factor App
 
 - Codebase
@@ -158,12 +173,6 @@
 - Disposability
 - Dev/prod parity
 - Logs
-
-# Lesson-01 Docker将会给这些领域带来影响
-
-- Software development
-- Deploy & Delivery
-- DevOps
 
 # Docker适用场景
 
@@ -317,7 +326,7 @@
 - $ sudo systemctl enable docker
 - $ sudo systemctl start docker
 - $ sudo docker -v
-- Docker version 1.7.1, build 786b29d
+- Docker version 1.8.1, build d12ea79
 
 # 设置镜像加速
 
@@ -329,8 +338,9 @@
 - https://github.com/liubin/docker101
 - Alauda社区
 
-# 致谢
+# 课后作业
 
-- 开课吧
-- 灵雀云（http://www.alauda.cn/）
+- 浏览官方文档
+- 安装Docker
+- 注册alauda.cn账户
 

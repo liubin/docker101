@@ -1,7 +1,8 @@
 # Docker入门与实践
 
 Lesson-04 使用Dockerfile构建镜像
-刘斌
+刘斌@OneAPM
+2015年8月
 
 # 本节概要
 
@@ -331,6 +332,18 @@ VOLUME /myvol
 - 影响RUN/CMD/ENTRYPOINT
 - RUN groupadd -r postgres && useradd -r -g postgres postgres
 - UID/GID不能保证可重现性，可显示指定
+- 默认为root
+
+# USER
+
+```bash
+USER user
+USER user:group
+USER uid
+USER uid:gid
+USER user:gid
+USER uid:group
+```
 
 # WORKDIR
 
@@ -391,3 +404,9 @@ RUN pwd
 - 最小安装
 - 注意build cache（apt-get -y update问题）
 
+# 课后作业
+
+- 基于centos:7构建自己的语言栈
+- COPY
+- WORKDIR/ENV
+- EXEC/CMD

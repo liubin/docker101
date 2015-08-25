@@ -1,7 +1,8 @@
 # Docker入门与实践
 
 Lesson-12 Docker网络
-刘斌
+刘斌@OneAPM
+2015年8月
 
 # 本节概要
 
@@ -287,7 +288,6 @@ DNAT       tcp  --  0.0.0.0/0            0.0.0.0/0            tcp dpt:80 to:172.
 - 实验演示
 - 模拟Docker为容器创建网络设备
 
-
 # 创建点对点连接
 
 - 虚拟设备对从host-container到container-container
@@ -355,4 +355,45 @@ DNAT       tcp  --  0.0.0.0/0            0.0.0.0/0            tcp dpt:80 to:172.
 - weave
 - flannel
 - Calico
-- Triton 
+- Triton
+
+# weave
+
+- Weaveworks开发
+- 高效的连接、监视和控制Docker容器的方式
+
+# weave
+
+- virtual network
+- 跨主机、自动发现
+- 不需要配置link，端口映射等
+- 轻松对外发布weave network上的服务
+
+![](images/weave-arch.png)
+
+# flannel
+
+- CoreOS开发
+- 基于etcd的容器网络编配
+- Agent： flanneld
+
+# flannel
+
+![](images/flannel-packet.png)
+
+# flannel Backends
+
+- udp
+- vxlan
+- host-gw
+- aws-vpc
+- gce
+- alloc
+
+
+# 课后作业
+
+- 练习iptables命令
+- 使用--net=host启动容器，查看网络配置
+- 使用--net=container启动容器，查看网络配置
+- 使用--net=none，手工为容器配置网络

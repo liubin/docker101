@@ -1,7 +1,8 @@
 # Docker入门与实践
 
 Lesson-09 Docker Compose
-刘斌
+刘斌@OneAPM
+2015年8月
 
 # 本节概要
 
@@ -244,3 +245,7 @@ security_opt:
 - 面向单主机
 - 不能解决网络和存储问题
 
+# 课后作业
+
+- 运行同目录下的例子
+- 构建自己的应用栈：App + DB

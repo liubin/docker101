@@ -1,7 +1,8 @@
 # Docker入门与实践
 
 Lesson-02 运行Docker容器
-刘斌
+刘斌@OneAPM
+2015年8月
 
 # 本节概要
 
@@ -186,8 +187,6 @@ docker run -it --add-host db-server:10.10.0.100
 - on-failure[:max-retries]
 - always
 - 每次重试间隔时间都翻倍，直到stop或rm -f
-
-
 
 # docker rename
 
@@ -432,6 +431,14 @@ docker run -t -i --rm --cap-add=NET_ADMIN ubuntu:14.04 ip link add dummy0 type d
 # WORKDIR
 
 - -w=""
+
+
+# 课后作业
+
+- 下载centos:7仓库
+- docker run -it centos:7 bash
+- docker ps -a
+- docker rm
 
 
 

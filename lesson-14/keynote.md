@@ -1,7 +1,8 @@
 # Docker入门与实践
 
 Lesson-14 基于Docker进行CI（持续集成）
-刘斌
+刘斌@OneAPM
+2015年8月
 
 # 本节概要
 
@@ -63,3 +64,8 @@ a=$(sudo docker run -d --net=host -v /var/run/docker.sock:/var/run/docker.sock -
 # 实验
 
 - 在Docker中使用Jenkins进行测试
+
+# 课后作业
+
+- 运行本示例代码
+

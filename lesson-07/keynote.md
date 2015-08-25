@@ -1,7 +1,8 @@
 # Docker入门与实践
 
 Lesson-07 Docker Link
-刘斌
+刘斌@OneAPM
+2015年8月
 
 # 本节概要
 
@@ -111,3 +112,11 @@ root@aed84ee21bde:/opt/webapp# cat /etc/hosts
 ![](images/etcd-ambassador-flow.png)
 
 图片来源：https://coreos.com/assets/images/media/etcd-ambassador-flow.png
+
+
+# 课后作业
+
+- 在两个容器中使用link
+- 在目的容器中检查ENV，/etc/hosts等
+- 确认网络连通性
+

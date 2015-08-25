@@ -1,7 +1,8 @@
 # Docker入门与实践
 
 Lesson-08 Docker Volume
-刘斌
+刘斌@OneAPM
+2015年8月
 
 # 本节概要
 
@@ -92,4 +93,11 @@ $ docker run -d --name db3 --volumes-from db1 training/postgres
 ```bash
 $ docker run --volumes-from dbdata -v $(pwd):/backup ubuntu tar cvf /backup/backup.tar /dbdata
 ```
+
+# 课后作业
+
+- 通过-v启动第一个容器
+- 在该容器中对volume中的数据进行修改
+- 启动第二个容器，使用--volumes-from
+- 在第二个容器中查看volume中的数据
 
