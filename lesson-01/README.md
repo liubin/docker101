@@ -2,68 +2,76 @@
 
 # 安装
 
+## Clone仓库
+
 ```
-# 第一次启动虚拟机
+
+[docker101vm]$ git clone https://github.com/liubin/docker101.git
+```
+
+## 第一次启动虚拟机
+
+```
 [host]$ vagrant up
 [host]$ vagrant ssh
+```
 
-# 升级系统并重启
+## 升级系统
+
+```
 [docker101vm]$ sudo yum -y update
+```
 
-# 重启后重新编译 VirtualBox Guest Additions
+## 重启后重新编译 VirtualBox Guest Additions
+
+```
 [docker101vm]$ sudo yum install -y gcc kernel-devel-3.10.0-229.11.1.el7.x86_64
+```
 
+## 重启虚拟机
 
-# 重启虚拟机
+```
 [docker101vm]$ exit
 [host]$ vagrant reload
 [host]$ vagrant ssh
-
-# 重新编译 VirtualBox Guest Additions
-[docker101vm]$ sudo /etc/init.d/vboxadd setup
-
-# 再次重启即可
 ```
+
+## 重新编译 VirtualBox Guest Additions
+
+```
+[docker101vm]$ sudo /etc/init.d/vboxadd setup
+```
+
+再次重启即可
+
 
 安装Docker（docker-engine）
 
 ```
-$ sudo curl -sSL https://get.docker.com/ | sh
-+ sudo -E sh -c 'sleep 3; yum -y -q install docker-engine'
-Failed to set locale, defaulting to C
-warning: /var/cache/yum/x86_64/7/docker-main-repo/packages/docker-engine-1.8.1-1.el7.centos.x86_64.rpm: Header V4 RSA/SHA1 Signature, key ID 2c52609d: NOKEY
-Public key for docker-engine-1.8.1-1.el7.centos.x86_64.rpm is not installed
-Importing GPG key 0x2C52609D:
- Userid     : "Docker Release Tool (releasedocker) <docker@docker.com>"
- Fingerprint: 5811 8e89 f3a9 1289 7c07 0adb f762 2157 2c52 609d
- From       : https://yum.dockerproject.org/gpg
-
-If you would like to use Docker as a non-root user, you should now consider
-adding your user to the "docker" group with something like:
-
-  sudo usermod -aG docker vagrant
-
-Remember that you will have to log out and back in for this to take effect!
-
+[docker101vm]$ sudo curl -sSL https://get.docker.com/ | sh
 ```
 
-启动
+## 自启动
 ```
-sudo systemctl start docker
+[docker101vm]$ sudo systemctl enable docker
 ```
 
-自启动
+## 启动
 ```
-sudo systemctl enable docker
+[docker101vm]$ sudo systemctl start docker
 ```
 
 
+## 设置灵雀云加速
+
 ```
-sudo vi /lib/systemd/system/docker.service
+[docker101vm]$ sudo vi /lib/systemd/system/docker.service
+
 /usr/bin/docker daemon --registry-mirror=http://liubin.m.alauda.cn -H fd://
 
-sudo systemctl daemon-reload
-sudo systemctl restart docker
+[docker101vm]$ sudo systemctl daemon-reload
+
+[docker101vm]$ sudo systemctl restart docker
 ```
 
 # 参考资料
