@@ -74,8 +74,6 @@
 [docker101vm]$ sudo systemctl start docker
 ```
 
-
-
 # 参考资料
 
 - 灵雀云镜像加速设置方法

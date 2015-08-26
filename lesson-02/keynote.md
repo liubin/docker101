@@ -32,7 +32,7 @@ Lesson-02 运行Docker容器
 - 网络、安全、日志等
 - -e, --exec-driver="native"
 - -s, --storage-driver=""
-- 支持的存储驱动包括aufs/devicemapper/btrfs/zfs/overlay
+- 存储驱动AUFS/device mapper/btrfs/zfs/overlay
 
 # Docker execdriver
 
@@ -52,7 +52,7 @@ Lesson-02 运行Docker容器
 - docker -H tcp://0.0.0.0:2375 ps
 - export DOCKER_HOST="tcp://0.0.0.0:2375" && docker ps
 
-# 启动我们的第一个容器
+# 启动我们的第2个容器
 
 - $sudo docker run centos:7 echo "I'm from container."
 
@@ -222,9 +222,9 @@ docker run -it --add-host db-server:10.10.0.100
 # docker create 用武之地
 
 ```bash
-docker create -v /data --name data ubuntu
+docker create -v /data --name data centos:7
 240633dfbb98128fa77473d3d9018f6123b99c454b3251427ae190a7d951ad57
-docker run --rm --volumes-from data ubuntu ls -la /data
+docker run --rm --volumes-from data centos:7 ls -la /data
 total 8
 drwxr-xr-x  2 root root 4096 Dec  5 04:10 .
 drwxr-xr-x 48 root root 4096 Dec  5 04:11 ..
