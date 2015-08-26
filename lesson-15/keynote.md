@@ -31,7 +31,7 @@ Lesson-15 延伸阅读
 # 生态系统
 
 - There is no platform without ecosystem.
-- by Solomon Hykes (Founder & CTO, Docker, inc) @DockerCon2015
+- by Solomon Hykes @DockerCon2015
 
 # PaaS
 
@@ -103,6 +103,16 @@ Lesson-15 延伸阅读
 
 # 开放容器组织
 
-- OCI（ https://www.opencontainers.org/ ）
+- OCI（ Open Container Initiative， https://www.opencontainers.org/ ）
 - RunC（ http://runc.io/ ）
+
+# RunC
+
+- Runtime
+- 基于libcontainer
+- 没有Daemon
+- 没有镜像管理但兼容Docker镜像
+
+![](./images/hamster.png)
+
 

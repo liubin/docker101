@@ -106,12 +106,14 @@ $ docker run -d -p 5000:5000 \
 
 # 认证
 
-- 通过Proxy直接认证
+- Basic（Proxy）认证
 - Token 认证（delegated authentication）
 
-# Proxy直接认证
+# Basic（Proxy）认证
 
 - 简单
+- 准备证书
+- 创建用户密码
 
 # Token认证
 
@@ -121,7 +123,6 @@ $ docker run -d -p 5000:5000 \
 # Portus
 
 - 开源：MariaDB + Rails + Registry
-- 演示
 
 # 课后作业
 

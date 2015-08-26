@@ -294,11 +294,22 @@ DNAT       tcp  --  0.0.0.0/0            0.0.0.0/0            tcp dpt:80 to:172.
 - 配置为点对点连接
 - 可和其他网络模式并用
 
+# 然而需求源源不断
+
+- IP重用
+- 任意指定IP
+- 跨主机通信
+- 从外部直接访问容器网路
+- L2/L3跨主机虚拟网络
+
 
 # pipework
 
 - Jérôme Petazzoni，Docker公司布道师
 - https://github.com/jpetazzo/pipework
+- ip/brctl/ovs-vsctl
+- VLAN/macvlan/Open vSwitch
+- DHCP
 
 # 修改容器内网络配置文件
 

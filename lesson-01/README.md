@@ -63,6 +63,7 @@ sudo vi /lib/systemd/system/docker.service
 /usr/bin/docker daemon --registry-mirror=http://liubin.m.alauda.cn -H fd://
 
 sudo systemctl daemon-reload
+sudo systemctl restart docker
 ```
 
 # 参考资料
