@@ -51,6 +51,19 @@
 [docker101vm]$ sudo curl -sSL https://get.docker.com/ | sh
 ```
 
+
+
+## 设置灵雀云加速
+
+```
+[docker101vm]$ sudo vi /lib/systemd/system/docker.service
+
+/usr/bin/docker daemon --registry-mirror=http://liubin.m.alauda.cn -H fd://
+
+[docker101vm]$ sudo systemctl daemon-reload
+```
+
+
 ## 自启动
 ```
 [docker101vm]$ sudo systemctl enable docker
@@ -62,17 +75,6 @@
 ```
 
 
-## 设置灵雀云加速
-
-```
-[docker101vm]$ sudo vi /lib/systemd/system/docker.service
-
-/usr/bin/docker daemon --registry-mirror=http://liubin.m.alauda.cn -H fd://
-
-[docker101vm]$ sudo systemctl daemon-reload
-
-[docker101vm]$ sudo systemctl restart docker
-```
 
 # 参考资料
 
