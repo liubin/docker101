@@ -183,8 +183,9 @@ Lesson-03 理解Docker镜像
 # BTRFS
 
 - 文件系统级别的CoW
-- 基于subvolume
+- 基于subvolume + snapshot
 - 将存储分为chunks
+- 要求Docker运行于BTRFS之上
 
 # overlay
 
@@ -214,7 +215,7 @@ Lesson-03 理解Docker镜像
 - 快照（snapshots）
 - 延迟写入（dm-delay）
 - dm-multipath
-
+- Docker : thin-provisioning + snapshot
 
 # thin provisioning
 
@@ -250,6 +251,7 @@ Lesson-03 理解Docker镜像
 
 - 块级别而不是文件级别的CoW
 - 随时对镜像（->容器）或者容器（->镜像）做快照
+- 不依赖于文件系统（在FS之下）
 
 # Device Mapper相关命令
 
@@ -270,6 +272,7 @@ Lesson-03 理解Docker镜像
 # Device Mapper缺点
 
 - 不能直接查看layer之间的diff
+- docker diff慢
 - data和metadata基于sparse文件
 - loop device而不是真正的/dev设备
 - 每启动1次容器，都需要从磁盘加载一次

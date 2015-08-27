@@ -156,12 +156,9 @@ You cannot attach to a stopped container, start it first
 
 - cid=$(sudo docker run -d -P training/webapp python app.py)
 - sudo docker stop $cid
-
-# Tips： 如何获得容器ID？
-
 - --cidfile="some/path"
 
-# 网络设置
+# 容器网络设置
 
 - --dns=[]
 - --mac-address=""
@@ -307,7 +304,7 @@ drwxr-xr-x 48 root root 4096 Dec  5 04:11 ..
 - 通常和--cpu-quota一起工作
 - --cpu-period=50000 --cpu-quota=25000 -> 50% CPU
 
-# 对容器进行资源限制-Cpu set
+# 对容器进行资源限制-CPU set
 
 - 指定运行所在CPU
 - $ docker run -ti --cpuset-cpus="1,3" ...
@@ -315,9 +312,9 @@ drwxr-xr-x 48 root root 4096 Dec  5 04:11 ..
 
 # 对容器进行资源限制-Block I/O
 
-- 容器默认I/O权重为500
 - --blkio-weight
 - 设置I/O权重，取值范围为10~1000
+- 容器默认I/O权重为500
 - $ docker run --blkio-weight 300
 
 # 和Namespace相关的一些参数
