@@ -27,7 +27,7 @@ Lesson-03 理解Docker镜像
 
 # Repository
 
-- 存放镜像的仓库
+- 存放一组镜像的仓库
 - 有一个名字
 - 一个镜像可以属于多个仓库
 - docker commit
@@ -173,7 +173,7 @@ Lesson-03 理解Docker镜像
 
 - 创建一个whiteout文件表示删除
 
-# 演示
+# 演示4
 
 - 见README.md
 
@@ -194,6 +194,7 @@ Lesson-03 理解Docker镜像
 
 # BTRFS
 
+- Butter FS,Better FS？
 - B-tree file system，以大规模存储位目标
 - Oracle 2007
 - 受ZFS影响
@@ -203,6 +204,7 @@ Lesson-03 理解Docker镜像
 # BTRFS
 
 - 文件系统级别的CoW
+- 数据分为chunk，可存储meta和data
 - diff快
 - 基于subvolume + snapshot
 - 要求Docker运行于BTRFS之上（/var/lib/docker）
@@ -244,14 +246,21 @@ Lesson-03 理解Docker镜像
 # thin provisioning
 
 - dm-thin/dm-thinp
-- 如果一个block没有被写入，则不会真正分配物理磁盘
-- 可超卖
 - 数据存放在两个文件，data和metadata
-- metadata保存着快照中虚拟位移和pool中物理位移的对应关系
 - data 也叫做block pool（block：默认64KB，最大1G）
+- 从存储池（block池）分配逻辑设备
+- dm-thin将逻辑设备mount成容器的文件系统
+- 每次发生CoW（写入），才去分配block
+- metadata保存着快照中虚拟位移和pool中物理位移的对应关系
+
+## thin provisioning
+
+- Docker镜像和容器都有自己的block设备
 - 默认data大小100GB（meta为2G）
 - 镜像大小10GB
 - 可以分配大于10个的容器
+- 如果一个block没有被写入，则不会真正分配物理磁盘
+- 可超卖
 
 # Device Mapper
 
@@ -286,7 +295,7 @@ Lesson-03 理解Docker镜像
 - MIN： block minor
 - INO： inode number
 
-# 演示
+# 演示5
 
 - 见README.md
 
@@ -294,7 +303,7 @@ Lesson-03 理解Docker镜像
 # Device Mapper优点
 
 - 容器自己的block设备
-- 指定文件系统类型
+- 位于fs下层，支持多种文件系统类型
 - 可共享block
 
 # Device Mapper缺点
@@ -306,11 +315,19 @@ Lesson-03 理解Docker镜像
 - 每启动1次容器，都需要从磁盘加载一次
 - 崩溃报告较多
 
+# 结论
+
+- 类PaaS高密度
+- AUFS（或overlay）
+- 频繁写大文件？
+- Device Mapper或者BTRFS
+
 # 课后作业
 
 - docker pull
 - docker history|inspect
 - docker images/rmi
 - docker commit
+- docker push
 
 

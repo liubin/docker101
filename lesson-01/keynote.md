@@ -49,6 +49,11 @@
 - PaaS(Heroku)
 - 网络技术（SDN/Open vSwitch/Overlay网络/隧道技术）
 
+# 观点
+
+- An EC2 instance is not a server—it’s a building block.
+- Re:Invent，Amazon’s CTO, Werner Vogels
+
 # 软件架构
 
 - SOA
@@ -64,6 +69,18 @@
 - OS
 - Library(Version etc.)
 - Rails(3/4),Ruby(1.8/1.9/2.0/2.1)
+
+
+# 12-Factor App
+
+- Codebase
+- Dependencies
+- Config
+- Build, release, run
+- Processes
+- Port binding
+- Dev/prod parity
+- Logs
 
 # Docker的解决方案
 
@@ -127,12 +144,19 @@
 
 # Docker实现原理
 
+- 核心Linux内核功能
 - Control Groups（cgroups）
 - Namespace
 - iptables
 - Union File System
-- Apparmor、SELinux等
+
+# 安全相关内核功能
+
 - Kernel Capability
+- 对进程持有的特权进行细粒度管理的机制
+- 系统时间，内核模块，硬件设备
+- SELinux(Security-Enhanced Linux/RedHat系Linux)
+- Apparmor(简单/Debian/Ubuntu)
 
 # cgroups
 
@@ -165,19 +189,6 @@
 - uts： hostname，NIS域名（UTS: Unix Timesharing System）（2.6.19）
 - user： 用户隔离（3.8）
 
-# 12-Factor App
-
-- Codebase
-- Dependencies
-- Config
-- Build, release, run
-- Processes
-- Port binding
-- Concurrency
-- Disposability
-- Dev/prod parity
-- Logs
-
 # Docker适用场景
 
 - 开发
@@ -198,7 +209,7 @@
 
 - 快速交付（交付标准）
 - 轻松部署
-- 快速收、扩容
+- 快速缩、扩容
 - 提高资源利用率（高密度、满负荷）
 - 提升软件工程师满意度
 
@@ -211,12 +222,14 @@
 - 2014/6 Docker 1.0
 - 几乎每月一个版本
 - 2015年8月，Docker 1.8发布
+- 2014.7 C轮融资4000万美元
+- 2015.4 D轮融资9500万美元
 
 # 支持平台
 
 - Linux
 - Boot2Docker（Windows 、 OS X）
-- Vagrant
+- Windows native
 
 # Docker 组件
 
@@ -249,7 +262,18 @@
 - Docker Trusted Registry(DTR)
 - 私有专用镜像Registry。
 - Docker Subscription
-- Docker订购，增值服务
+- Docker订购，增值服务；
+- 在整个部署、分发的生命周期提供帮助
+- 包括DTR
+- 部署到公有或者私有云
+
+# 我们不会讲
+
+- Docker ToolBox/Kitematic： 有了本课程基础，应对Kitematic应该小事一桩
+- DTR： 我们会讲Registry
+- Docker Subscription：
+- 1. 我们会讲 Registry
+- 2. 都花钱买Subscription了，就享受服务吧
 
 # Docker Engine架构
 
@@ -266,6 +290,8 @@
 # Libcontainer
 
 - Container format
+- Execution driver
+- 将cgroups，Namespace，Union FS集成到一起使用
 
 ![](./images/docker-libcontainer-lxc.png)
 

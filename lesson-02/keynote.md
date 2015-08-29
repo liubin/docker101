@@ -224,7 +224,7 @@ docker run -it --add-host db-server:10.10.0.100
 # 指定filter
 
 - docker events -f 'event=stop'
-- docker events -f 'image=ubuntu-1:14.04'
+- docker events -f 'image=ubuntu:14.04'
 - docker events -f 'container=xx' -f 'container=yy'
 - docker events -f 'container=xx' -f 'event=stop'
 
