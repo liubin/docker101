@@ -134,15 +134,20 @@ docker port web
 
 - attach 到一个Detached的容器上
 
+
 # docker attach
 
-```bash
-docker run -d -P training/webapp python app.py
-befb8d63f46b298644d32a ...
-docker ps
-docker attach befb
-^C
-```
+- docker attach [OPTIONS] CONTAINER
+- --no-stdin=false
+- --sig-proxy=true
+- detach： CTRL-p CTRL-q (for a quiet exit)
+- detach： CTRL-c if --sig-proxy == false
+- SIGINT： CTRL-c if --sig-proxy == true（默认）
+
+
+# docker attach
+
+- 演示5
 
 # stop/kill
 
@@ -161,14 +166,6 @@ docker attach befb
 - docker --rm 自动清除容器
 - 和选项 -d 不兼容
 
-# docker attach
-
-- docker attach [OPTIONS] CONTAINER
-- --no-stdin=false
-- --sig-proxy=true
-- detach： CTRL-p CTRL-q (for a quiet exit)
-- detach： CTRL-c if --sig-proxy == false
-- SIGINT： CTRL-c if --sig-proxy == true（默认）
 
 # 容器网络设置
 
@@ -199,12 +196,6 @@ docker run -it --add-host db-server:10.10.0.100
 - /etc/hostname
 - --add-host测试
 
-# restart机制
-
-- none
-- on-failure[:max-retries]
-- always
-- 每次重试间隔时间都翻倍，直到stop或rm -f
 
 # docker events
 
@@ -212,13 +203,7 @@ docker run -it --add-host db-server:10.10.0.100
 - create, destroy, die, export, kill, oom, pause, restart, start, stop, unpause
 - untag, delete
 - 指定时间段和过滤器
-
-
-# 演示
-
-- docker events
-- docker run --name alwaysrestart --restart=always
-- docker kill alwaysrestart
+- 演示6
 
 # 指定时间条件
 
@@ -243,26 +228,20 @@ docker run -it --add-host db-server:10.10.0.100
 - docker events -f 'container=xx' -f 'container=yy'
 - docker events -f 'container=xx' -f 'event=stop'
 
-# docker diff
+# restart机制
 
-- docker diff CONTAINER
-- A - Add
-- D - Delete
-- C - Change
-
-# docker pause/unpause
-
-- docker pause CONTAINER
-- docker unpause CONTAINER
-
+- none
+- on-failure[:max-retries]
+- always
+- 每次重试间隔时间都翻倍，直到stop或rm -f
+- 演示7
 
 # 其他一些docker命令
 
 - docker rename/top/cp
-- docker rename OLD_NAME NEW_NAME
-- docker top CONTAINER [ps OPTIONS]
-- docker cp CONTAINER:PATH HOSTDIR
-- docker cp CONTAINER:PATH -
+- docker pause CONTAINER
+- docker unpause CONTAINER
+- docker diff
 
 # docker create
 
@@ -283,12 +262,11 @@ drwxr-xr-x 48 root root 4096 Dec  5 04:11 ..
 
 # 常用选项
 
-- 和Dockerfile中指令有关
+- 在镜像中指令有关
 - -v
 - -e
 - -p
 - -P
-
 
 # ENTRYPOINT
 
@@ -315,7 +293,7 @@ drwxr-xr-x 48 root root 4096 Dec  5 04:11 ..
 - -v=[] [host-dir:]container-dir[:rw|ro]
 - --volumes-from=""
 
-# 演示
+# 演示8
 
 - 见 README.md
 
@@ -340,12 +318,11 @@ drwxr-xr-x 48 root root 4096 Dec  5 04:11 ..
 - gelf： Graylog Extended Log Format (GELF)
 - fluentd
 
-# 演示
+# 演示9
 
 - 查看log
 - /var/lib/docker/containers
 - 容器停止后的log
-
 - 见 README.md
 
 # 对容器进行资源限制-Memory
@@ -431,10 +408,7 @@ drwxr-xr-x 48 root root 4096 Dec  5 04:11 ..
 - --ipc=""，设置容器的IPC模式
 - container:<name|id>
 - host
-
-# 演示
-
-- PID=host
+- 演示10
 
 # Linux capabilities
 
@@ -458,9 +432,6 @@ drwxr-xr-x 48 root root 4096 Dec  5 04:11 ..
 - SYSLOG：使用SYSLOG
 - CHOWN：修改属主
 
-# 演示
-
-- 添加dummy网络设备
 
 # 课后作业
 
