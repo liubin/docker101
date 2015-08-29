@@ -146,13 +146,13 @@
 # cgroups
 
 - blkio： 块设备读写限制（Read <= N bytes/sec）
-- cpu： 调度器对CPU的限制
+- cpu： 对CPU调度器的限制
 - cpuset： 多核下对CPU访问的控制
 - cpuacct: CPU accounting controller
 - devices： 对设备的控制
 - freezer：处理的暂停和恢复
 - memory： 控制内存资源的使用
-- net_cls： 使用等级识别符（classid）标记网络数据包，可允许 Linux 流量控制程序（tc）识别从具体 cgroup 中生成的数据包。
+- net_cls： 使用等级识别符（classid）标记网络数据包，可允许 Linux 流量控制程序（tc）识别从具体 cgroups 中生成的数据包。
 - net_prio： 对不同网络接口通信的优先级别的设置
 
 
@@ -296,6 +296,7 @@
 - 托管镜像仓库（repositories of images）
 - Registry API
 - Docker Hub和私有Registry
+- 码头上的仓库
 
 # 课程演习环境
 

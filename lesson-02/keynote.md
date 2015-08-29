@@ -7,9 +7,9 @@ Lesson-02 运行Docker容器
 # 本节概要
 
 - docker命令的两个角色
-- 理解容器
-- 管理容器
-- docker run命令
+- 理解容器构造
+- 管理容器生命周期
+- docker run命令的用法
 
 # docker命令
 
@@ -39,6 +39,8 @@ Lesson-02 运行Docker容器
 - libcontainer
 - lxc
 
+![](../lesson-01/images/docker-libcontainer-lxc.png)
+
 # Docker daemon(Server)
 
 - $ sudo systemctl status docker
@@ -52,21 +54,64 @@ Lesson-02 运行Docker容器
 - docker -H tcp://0.0.0.0:2375 ps
 - export DOCKER_HOST="tcp://0.0.0.0:2375" && docker ps
 
-# 启动我们的第2个容器
+# 演示 1
 
-- $sudo docker run centos:7 echo "I'm from container."
+- 通过IP地址连接远程Docker
+- docker -H tcp://0.0.0.0:2375 pull ubuntu
 
-# 容器/镜像 ID
+# 演示 2
+
+- 启动我们的第2个容器
+- $ sudo docker run -it centos bash
+
+# 演示 2：容器内部
+
+- [root@e757c235c60c /]#
+- hostname
+- ip addr show eth0
+- mount
+- ps -ef
+- mount
+- exit
+- docker ps -a
+
+# 演示 3：容器/镜像 ID
 
 - 64位
 - 容器
-- 镜像
-- 镜像层
+- 镜像/镜像层
+- 长形UUID（64位）
+- 短形UUID(12位)
+- 1位？
+
+# 容器命名
+
+- name：cocky_curie（scientists and hackers）
+- docker run --name
+
+# Tips： 如何获得容器ID？
+
+- cid=$(sudo docker run -d -P training/webapp python app.py)
+- sudo docker stop $cid
+- --cidfile="some/path"
+
+# 容器的生命周期
+
+- 创建、启动（docker create/run/restart）
+- 停止（stop、kill区别？）
+- 销毁（rm）
+
+# stop/kill
+
+- stop，SIGTERM,超过-t(10s)则SIGKILL
+- kill，SIGKILL
+- kill -s, --signal="KILL"
 
 # 常用容器命令
 
 - docker run [OPTIONS] IMAGE[:TAG|@DIGEST] [COMMAND] [ARG...]
-- docker ps
+- docker stop/kill
+- docker ps -a|-n --no-trunc
 - docker rm
 
 # Tips 自动删除停止的容器
@@ -74,24 +119,18 @@ Lesson-02 运行Docker容器
 - docker --rm 自动清除容器
 - 和选项 -d 不兼容
 
-# 进入容器内部
+# 演示
 
-- $ sudo docker run -it centos:7 bash
-- [root@e757c235c60c /]#
-- hostname
-- ip addr show eth0
-- mount
+- 容器多了，需要清理
+- docker ps
+- docker rm
+- docker run --rm
 
-# 容器的生命周期
-
-- 创建、启动（docker create/run/restart）
-- 停止（stop）
-- 销毁（rm、kill）
 
 # 前台容器和后台容器
 
 - Foreground/Detached (-d)
-- sudo docker run -it centos:7 bash
+- sudo docker run -it centos bash
 
 # 前台容器
 
@@ -102,14 +141,15 @@ Lesson-02 运行Docker容器
 
 # 后台容器
 
-- -d： 后台运行，无前台输入输出交互
-- -P： 暴露所有端口
+```bash
+docker run --name web -d -P training/webapp python app.py
+docker port web
+```
 
 # 后台容器
 
-```bash
-docker run -d -P training/webapp python app.py
-```
+- -d： 后台运行，无前台输入输出交互
+- -P： 暴露所有端口
 
 # docker attach
 
@@ -125,38 +165,23 @@ docker attach befb
 ^C
 ```
 
-
 # docker attach
 
 - docker attach [OPTIONS] CONTAINER
 - --no-stdin=false
-- --sig-proxy=true 
+- --sig-proxy=true
 - detach： CTRL-p CTRL-q (for a quiet exit)
 - detach： CTRL-c if --sig-proxy == false
 - SIGINT： CTRL-c if --sig-proxy == true（默认）
 
-
 # 容器结束
 
 ```bash
-docker run -d centos:7 echo "I'm from container."
+docker run -d centos echo "I'm from container."
 61146a27f83a0b291cfa945135e25 ........
 docker attach 611
 You cannot attach to a stopped container, start it first
 ```
-
-# 容器命名
-
-- 长形UUID
-- 短形UUID
-- name：cocky_curie（scientists and hackers）
-- docker run --name
-
-# Tips： 如何获得容器ID？
-
-- cid=$(sudo docker run -d -P training/webapp python app.py)
-- sudo docker stop $cid
-- --cidfile="some/path"
 
 # 容器网络设置
 
@@ -178,12 +203,27 @@ You cannot attach to a stopped container, start it first
 docker run -it --add-host db-server:10.10.0.100
 ```
 
+# 演示
+
+- 使用host模式
+- 检查网络设置
+- /etc/hosts
+- /etc/resolve.conf
+- /etc/hostname
+- --add-host测试
+
 # restart机制
 
 - none
 - on-failure[:max-retries]
 - always
 - 每次重试间隔时间都翻倍，直到stop或rm -f
+
+# 演示
+
+- docker events
+- docker run --name alwaysrestart --restart=always
+- docker kill alwaysrestart
 
 # docker rename
 
@@ -219,13 +259,74 @@ docker run -it --add-host db-server:10.10.0.100
 # docker create 用武之地
 
 ```bash
-docker create -v /data --name data centos:7
+docker create -v /data --name data centos
 240633dfbb98128fa77473d3d9018f6123b99c454b3251427ae190a7d951ad57
-docker run --rm --volumes-from data centos:7 ls -la /data
+docker run --rm --volumes-from data centos ls -la /data
 total 8
 drwxr-xr-x  2 root root 4096 Dec  5 04:10 .
 drwxr-xr-x 48 root root 4096 Dec  5 04:11 ..
 ```
+
+# 常用选项
+
+- 和Dockerfile中指令有关
+- -v
+- -e
+- -p
+- -P
+
+
+# ENTRYPOINT
+
+- --entrypoint=""
+- docker inspect centos | jq .
+
+# EXPOSE
+
+- Dockerfile里唯一对网络设置选项
+- -P或-p
+- -p containerPort
+- -p hostPort:containerPort
+- -p ip:hostPort:containerPort
+- -p ip::containerPort
+
+# ENV
+
+- 预设： HOME/HOSTNAME/PATH/TERM
+- --link
+- -e "deep=purple"
+
+# VOLUME
+
+- -v=[] [host-dir:]container-dir[:rw|ro]
+- --volumes-from=""
+
+# USER
+
+- 默认为root
+- -u="": Username or UID
+
+# WORKDIR
+
+- -w=""
+
+
+# Logging驱动
+
+- 容器可以指定logging驱动
+- --log-driver=VALUE
+- none
+- json-file（默认，docker logs可用）
+- syslog
+- journald
+- gelf： Graylog Extended Log Format (GELF)
+- fluentd
+
+# 演示
+
+- 查看log
+- /var/lib/docker/containers
+- 容器停止后的log
 
 # docker events
 
@@ -256,6 +357,10 @@ drwxr-xr-x 48 root root 4096 Dec  5 04:11 ..
 - docker events -f 'image=ubuntu-1:14.04'
 - docker events -f 'container=xx' -f 'container=yy'
 - docker events -f 'container=xx' -f 'event=stop'
+
+# 演示
+
+- 见 README.md
 
 # 对容器进行资源限制-Memory
 
@@ -332,7 +437,6 @@ drwxr-xr-x 48 root root 4096 Dec  5 04:11 ..
 
 - --uts=""，设置UTS namespace
 - 'host'
-- --net=host 不包括 --uts=host
 - 容器名随host而变
 - 在容器中修改host的主机名
 
@@ -360,82 +464,25 @@ drwxr-xr-x 48 root root 4096 Dec  5 04:11 ..
 - SYS_TIME： 修改系统时间
 - NET_ADMIN： 网络管理操作
 - KILL： 跳过权限发送signal
-- SETGID/SETUID
-- SYSLOG
-- CHOWN
-
+- SETGID/SETUID：设置UID/GID
+- SYSLOG：使用SYSLOG
+- CHOWN：修改属主
 
 # Linux capabilities 示例
 
 ```bash
-docker run --cap-add=ALL --cap-drop=MKNOD ...
-docker run -t -i --rm  ubuntu:14.04 ip link add dummy0 type dummy
+# docker run -ti --rm centos ip link add dummy0 type dummy
 RTNETLINK answers: Operation not permitted
-docker run -t -i --rm --cap-add=NET_ADMIN ubuntu:14.04 ip link add dummy0 type dummy
+# docker run -ti --rm --cap-add=NET_ADMIN centos ip link add dummy0 type dummy
 ```
-
-# Logging驱动
-
-- 容器可以指定logging驱动
-- --log-driver=VALUE
-- none
-- json-file（默认，docker logs可用）
-- syslog
-- journald
-- gelf： Graylog Extended Log Format (GELF)
-- fluentd
-
-# 能通过docker run覆盖的镜像参数
-
-- Dockerfile的设置可覆盖
-- FROM/MAINTAINER/RUN/ADD
-- CMD/ENTRYPOINT/EXPOSE/ENV/VOLUME/USER/WORKDIR
-
-# CMD
-
-- docker run -it cnetos:7 bash
-
-# ENTRYPOINT
-
-- --entrypoint=""
-
-# EXPOSE
-
-- Dockerfile里唯一对网络设置选项
-- -P或-p
-- -p containerPort
-- -p hostPort:containerPort
-- -p ip:hostPort:containerPort
-- -p ip::containerPort
-
-
-# ENV
-
-- 预设： HOME/HOSTNAME/PATH/TERM
-- --link
-- -e "deep=purple"
-
-# VOLUME
-
-- -v=[] [host-dir:]container-dir[:rw|ro]
-- --volumes-from=""
-
-# USER
-
-- 默认为root
-- -u="": Username or UID
-
-# WORKDIR
-
-- -w=""
-
 
 # 课后作业
 
-- 下载centos:7仓库
-- docker run -it centos:7 bash
+- 下载centos仓库
+- docker run -it centos bash
 - docker ps -a
 - docker rm
+- 尝试docker run的各种选项
 
 
 
