@@ -20,11 +20,6 @@
 - 官方文档（https://docs.docker.com/）
 - 《第一本Docker书》
 
-# 致谢
-
-- 开课吧
-- 灵雀云（http://www.alauda.cn/）
-
 # 什么是Docker
 
 - Build, Ship, Run
@@ -39,36 +34,40 @@
 - 开放平台
 - 容器技术
 - 交付标准
+- 开发流程
 
 # Docker产生背景
 
 - 云计算技术
 - 软件架构
-- 面临问题
+- 积累的问题
 
 # 云计算技术
 
 - 虚拟化技术
-- IaaS
-- PaaS
-- SDN
+- IaaS(AWS)
+- PaaS(Heroku)
+- 网络技术（SDN/Open vSwitch/Overlay网络/隧道技术）
 
 # 软件架构
 
 - SOA
 - 微服务
 - 12-Factor App
+- Blue-green Deployment
 - Golden Image
 
-# 依赖地狱和一致环境
+# 积累问题
 
+- 依赖地狱和一致环境
 - Hardware
 - OS
 - Library(Version etc.)
 - Rails(3/4),Ruby(1.8/1.9/2.0/2.1)
 
-# 集装箱思想
+# Docker的解决方案
 
+- 集装箱思想
 - 标准化（大小、运输方式等，接口统一）
 - 隔离（互不干扰、影响）
 
@@ -97,7 +96,7 @@
 
 - chroot（1979/1982）
 
-# Docker特点（优势）
+# 为什么Docker吸引人
 
 - 简单
 - 轻量
@@ -107,6 +106,11 @@
 - 版本化
 - 重用
 - Immutable
+
+# 简单一句话
+
+- 从阳春白雪，到下里巴人
+- 从专业运维、SA专家，到前端、设计师
 
 # 和虚拟机相比
 
@@ -132,6 +136,15 @@
 
 # cgroups
 
+- Control groups
+- 按资源划分等级的不同组内
+- 共享硬件
+- 对资源进行限制
+- 记账
+- 伪文件系统的实现方式
+
+# cgroups
+
 - blkio： 块设备读写限制（Read <= N bytes/sec）
 - cpu： 调度器对CPU的限制
 - cpuset： 多核下对CPU访问的控制
@@ -151,15 +164,6 @@
 - mnt： 挂载点隔离（2.4.19）
 - uts： hostname，NIS域名（UTS: Unix Timesharing System）（2.6.19）
 - user： 用户隔离（3.8）
-
-
-
-# Docker将会给这些领域带来影响
-
-- Software development
-- Deploy & Delivery
-- DevOps
-
 
 # 12-Factor App
 
@@ -181,6 +185,32 @@
 - 部署
 - CI/CD
 - PaaS/CaaS
+- 只有想不到，没有做不到
+- 还有人用来装Eclipse呢
+
+# Docker将会给这些领域带来影响
+
+- Software Development
+- Deploy & Delivery
+- DevOps
+
+# Docker带来的收益
+
+- 快速交付（交付标准）
+- 轻松部署
+- 快速收、扩容
+- 提高资源利用率（高密度、满负荷）
+- 提升软件工程师满意度
+
+# Docker历史
+
+- 优秀的产品背后都有一家伟大的公司
+- docCloud（YCombinator），2013年1月内部项目
+- 2013年3月，在PyCon US首次公开
+- 2013/3/27 Docker 0.1
+- 2014/6 Docker 1.0
+- 几乎每月一个版本
+- 2015年8月，Docker 1.8发布
 
 # 支持平台
 
@@ -188,39 +218,44 @@
 - Boot2Docker（Windows 、 OS X）
 - Vagrant
 
-# Docker能干什么
-
-- 快速交付（交付标准）
-- 轻松部署和扩展
-- 提高资源利用率（高密度、满负荷）
-
-# Docker历史
-
-- docCloud（2010 YCombinator），2013年1月内部项目
-- 2013年3月，在PyCon US首次公开
-- 2013/3/27 Docker 0.1
-- 2014/6 Docker 1.0
-- 几乎每月一个版本
-- Docker 1.8
-
 # Docker 组件
 
 - Docker Engine 或 “Docker”
+- 创建和运行Docker容器，运行平台。
 - Docker Hub
+- 托管的Registry，镜像托管服务，无需安装，只需要注册一个账号。
 - Docker Registry
-- Docker Machine
-- Docker Compose
-- Docker Swarm
-- Docker Trusted Registry(DTR)
-- Kitematic
-- Docker Toolbox
-- Docker Subscription
+- 开源的Docker镜像分发服务（存储、下载）。
 
+
+# Docker 组件
+
+- Docker Machine
+- 本地或者云端自动容器环境provisioning工具。
+- Docker Compose
+- 多容器应用管理
+- Docker Swarm
+- 容器集群和调度管理工具
+
+# Docker 组件
+
+- Kitematic
+- 桌面GUI管理程序
+- Docker Toolbox
+- 替代Boot2Docker
+
+# Docker 组件
+
+- Docker Trusted Registry(DTR)
+- 私有专用镜像Registry。
+- Docker Subscription
+- Docker订购，增值服务
 
 # Docker Engine架构
 
 - C/S结构
-- Remote API
+- Remote API（RESTful）
+- TLS支持
 
 ![](./images/docker-arch.png)
 
@@ -230,7 +265,7 @@
 
 # Libcontainer
 
-- libconatiner
+- Container format
 
 ![](./images/docker-libcontainer-lxc.png)
 
@@ -255,7 +290,6 @@
 - ID（和镜像ID类似）
 
 ![](./images/docker-filesystem.png)
-
 
 # Registry
 
@@ -307,6 +341,10 @@
 - 下载centos7镜像：http://pan.baidu.com/s/1kT7u5oF
 - vagrant box add chef/centos-7.0 opscode_centos-7.0_chef-provisionerless.box
 - 执行上一页命令
+
+# 不必一切从头开始
+
+- git clone https://github.com/liubin/docker101
 
 # Vagrantfile
 
