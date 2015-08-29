@@ -91,41 +91,9 @@ Lesson-02 运行Docker容器
 
 # Tips： 如何获得容器ID？
 
-- cid=$(sudo docker run -d -P training/webapp python app.py)
-- sudo docker stop $cid
+- cid=$(docker run --name name1 -d -P --cidfile=/tmp/cid.lock training/webapp python app.py)
+- docker stop $cid
 - --cidfile="some/path"
-
-# 容器的生命周期
-
-- 创建、启动（docker create/run/restart）
-- 停止（stop、kill区别？）
-- 销毁（rm）
-
-# stop/kill
-
-- stop，SIGTERM,超过-t(10s)则SIGKILL
-- kill，SIGKILL
-- kill -s, --signal="KILL"
-
-# 常用容器命令
-
-- docker run [OPTIONS] IMAGE[:TAG|@DIGEST] [COMMAND] [ARG...]
-- docker stop/kill
-- docker ps -a|-n --no-trunc
-- docker rm
-
-# Tips 自动删除停止的容器
-
-- docker --rm 自动清除容器
-- 和选项 -d 不兼容
-
-# 演示
-
-- 容器多了，需要清理
-- docker ps
-- docker rm
-- docker run --rm
-
 
 # 前台容器和后台容器
 
@@ -150,6 +118,7 @@ docker port web
 
 - -d： 后台运行，无前台输入输出交互
 - -P： 暴露所有端口
+- -p： 精确指定端口
 
 # docker attach
 
@@ -164,6 +133,30 @@ docker ps
 docker attach befb
 ^C
 ```
+
+# 容器的生命周期
+
+- 创建、启动（docker create/run/restart）
+- 停止（stop、kill区别？）
+- 销毁（rm）
+
+# stop/kill
+
+- stop，SIGTERM,超过-t(10s)则SIGKILL
+- kill，SIGKILL
+- kill -s, --signal="KILL"
+
+# 常用容器命令
+
+- docker run [OPTIONS] IMAGE[:TAG|@DIGEST] [COMMAND] [ARG...]
+- docker stop/kill
+- docker ps -a|-n --no-trunc
+- docker rm
+
+# Tips 自动删除停止的容器
+
+- docker --rm 自动清除容器
+- 和选项 -d 不兼容
 
 # docker attach
 
@@ -225,9 +218,6 @@ docker run -it --add-host db-server:10.10.0.100
 - docker run --name alwaysrestart --restart=always
 - docker kill alwaysrestart
 
-# docker rename
-
-- docker rename OLD_NAME NEW_NAME
 
 # docker diff
 
@@ -241,12 +231,12 @@ docker run -it --add-host db-server:10.10.0.100
 - docker pause CONTAINER
 - docker unpause CONTAINER
 
-# docker top
 
+# 其他一些docker命令
+
+- docker rename/top/cp
+- docker rename OLD_NAME NEW_NAME
 - docker top CONTAINER [ps OPTIONS]
-
-# docker cp
-
 - docker cp CONTAINER:PATH HOSTDIR
 - docker cp CONTAINER:PATH -
 

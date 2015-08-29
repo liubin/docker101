@@ -1,6 +1,19 @@
 # lesson-2 运行Docker容器
 
 
+# jq
+
+```
+# docker inspect centos | jq ".[0].Config.Cmd"
+[
+  "/bin/bash"
+]
+
+# docker inspect centos | jq ".[0].Config.Entrypoint"
+null
+
+```
+
 # 命令测试
 
 ## 后台容器
@@ -8,34 +21,44 @@
 shell 1:
 
 ```
-docker run --name web -d -P training/webapp python app.py
+docker run --name web -d -p 5000:5000 training/webapp python app.py
 docker logs -f web
 ```
 
 shell 2:
 
 ```
-docker port web
+curl localhost:5000
 ```
-
-stop和kill的区别
-
 
 ## attach
 
 ```
-docker run -d --name top centos top -b
+docker run -d --name top1 centos top -b
 
-docker attach top
+docker attach top1
+ctrl-c
 
-docker rm top
+docker run -d --name top2 centos top -b
+
+docker attach --sig-proxy=false top2
+ctrl-c
+
+docker ps -a
+
 ```
 
-
-## docker diff
+## stop和kill的区别
 
 ```
-docker diff $ct1
+docker run --name web -d -P training/webapp python app.py
+docker stop web
+docker rm web
+
+docker run --name web -d -P training/webapp python app.py
+docker kill web
+docker rm web
+
 ```
 
 ## docker events
