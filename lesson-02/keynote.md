@@ -212,12 +212,42 @@ docker run -it --add-host db-server:10.10.0.100
 - always
 - 每次重试间隔时间都翻倍，直到stop或rm -f
 
+# docker events
+
+- docker events [OPTIONS]
+- create, destroy, die, export, kill, oom, pause, restart, start, stop, unpause
+- untag, delete
+- 指定时间段和过滤器
+
+
 # 演示
 
 - docker events
 - docker run --name alwaysrestart --restart=always
 - docker kill alwaysrestart
 
+# 指定时间条件
+
+- --since=""
+- --until=""
+- docker events --since 1378216169
+- docker events --since '2013-09-03'
+- docker events --since '2013-09-03T15:49:29'
+
+# 指定filter
+
+- -f / --filter
+- container
+- event
+- image
+- AND / OR
+
+# 指定filter
+
+- docker events -f 'event=stop'
+- docker events -f 'image=ubuntu-1:14.04'
+- docker events -f 'container=xx' -f 'container=yy'
+- docker events -f 'container=xx' -f 'event=stop'
 
 # docker diff
 
@@ -269,16 +299,16 @@ drwxr-xr-x 48 root root 4096 Dec  5 04:11 ..
 # ENTRYPOINT
 
 - --entrypoint=""
-- docker inspect centos | jq .
+- docker inspect centos | jq ".[0].Config.Entrypoint"
 
 # EXPOSE
 
 - Dockerfile里唯一对网络设置选项
 - -P或-p
-- -p containerPort
-- -p hostPort:containerPort
-- -p ip:hostPort:containerPort
-- -p ip::containerPort
+- -p 5000
+- -p 6000:6000
+- -p 127.0.0.1:7000:7000
+- -p 127.0.0.1::7000
 
 # ENV
 
@@ -290,6 +320,10 @@ drwxr-xr-x 48 root root 4096 Dec  5 04:11 ..
 
 - -v=[] [host-dir:]container-dir[:rw|ro]
 - --volumes-from=""
+
+# 演示
+
+- 见 README.md
 
 # USER
 
@@ -317,38 +351,6 @@ drwxr-xr-x 48 root root 4096 Dec  5 04:11 ..
 - 查看log
 - /var/lib/docker/containers
 - 容器停止后的log
-
-# docker events
-
-- docker events [OPTIONS]
-- create, destroy, die, export, kill, oom, pause, restart, start, stop, unpause
-- untag, delete
-- 指定时间段和过滤器
-
-# 指定时间条件
-
-- --since=""
-- --until=""
-- docker events --since 1378216169
-- docker events --since '2013-09-03'
-- docker events --since '2013-09-03T15:49:29'
-
-# 指定filter
-
-- -f / --filter
-- container
-- event
-- image
-- AND / OR
-
-# 指定filter
-
-- docker events -f 'event=stop'
-- docker events -f 'image=ubuntu-1:14.04'
-- docker events -f 'container=xx' -f 'container=yy'
-- docker events -f 'container=xx' -f 'event=stop'
-
-# 演示
 
 - 见 README.md
 
@@ -436,6 +438,10 @@ drwxr-xr-x 48 root root 4096 Dec  5 04:11 ..
 - container:<name|id>
 - host
 
+# 演示
+
+- PID=host
+
 # Linux capabilities
 
 - 默认Docker容器没有特权“unprivileged”
@@ -458,13 +464,9 @@ drwxr-xr-x 48 root root 4096 Dec  5 04:11 ..
 - SYSLOG：使用SYSLOG
 - CHOWN：修改属主
 
-# Linux capabilities 示例
+# 演示
 
-```bash
-# docker run -ti --rm centos ip link add dummy0 type dummy
-RTNETLINK answers: Operation not permitted
-# docker run -ti --rm --cap-add=NET_ADMIN centos ip link add dummy0 type dummy
-```
+- 添加dummy网络设备
 
 # 课后作业
 

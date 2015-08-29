@@ -15,6 +15,10 @@ Lesson-03 理解Docker镜像
 
 - 容器的模板
 - 分层
+- manifest(json) + layers
+- layer: tar包
+
+![](../lesson-01/images/docker-filesystem.png)
 
 # 分层的优势
 
@@ -35,32 +39,60 @@ Lesson-03 理解Docker镜像
 - [registry[:port]/][user_name/](repository_name:version_tag)
 - 默认index.docker.io:80
 
+
+# 拉取和推送镜像
+
+- docker search
+- docker pull
+- docker push
+
 # 查看Docker镜像
 
 - docker images
 - REPO/TAG/ID
-
-# 查看Docker镜像
-
 - docker history
 - docker inspect
-
-# 拉取和推送镜像
-
-- docker pull
-- docker push
-
-# 常用镜像命令
-
-- 删除镜像
-- push
 - tag
+- docker rmi
 
-# push到灵雀云
+# 演示1
 
-- 创建镜像仓库
 - docker login
+- docker pull
+- docker tag
 - docker push
+
+# 构建镜像
+
+- 必要性
+- 方式：commit，Dockerfile，从0开始
+- 优缺点：Dockerfile > commit> 从0开始
+
+# 通过docker commit命令构建镜像
+
+- docker run -it base bash
+- # yum update && yum install xxx && exit
+- docker commit 
+
+# 演示2
+
+- 创建nginx镜像
+
+# docker commit 参数
+
+- -m --message
+- -a --author
+- -c --changes
+
+# commit -c可覆盖参数
+
+- CMD、ENTRYPOINT
+- ENV
+- EXPOSE
+- ONBUILD
+- USER
+- VOLUME
+- WORKDIR
 
 # 共享镜像
 
@@ -92,27 +124,10 @@ Lesson-03 理解Docker镜像
 - 记录metadata
 - 将结果再打成一个tar包
 
-# 通过docker commit命令构建镜像
+# 演示3
 
-- docker run -it base bash
-- # yum update && yum install xxx && exit
-- docker commit 
-
-# docker commit 参数
-
-- -m --message
-- -a --author
-- -c --changes
-
-# commit -c可覆盖参数
-
-- CMD、ENTRYPOINT
-- ENV
-- EXPOSE
-- ONBUILD
-- USER
-- VOLUME
-- WORKDIR
+- save导出镜像
+- 解压查看分层
 
 # Docker存储引擎
 
@@ -158,6 +173,10 @@ Lesson-03 理解Docker镜像
 
 - 创建一个whiteout文件表示删除
 
+# 演示
+
+- 见README.md
+
 # AUFS优点
 
 - 成熟度以及和Docker的融合性
@@ -175,17 +194,19 @@ Lesson-03 理解Docker镜像
 
 # BTRFS
 
-- B-tree file system
+- B-tree file system，以大规模存储位目标
 - Oracle 2007
 - 受ZFS影响
-- 支持快照和CoW
+- 支持快照、CoW和回滚
+- CentOS 7.1可用，preview
 
 # BTRFS
 
 - 文件系统级别的CoW
+- diff快
 - 基于subvolume + snapshot
-- 将存储分为chunks
-- 要求Docker运行于BTRFS之上
+- 要求Docker运行于BTRFS之上（/var/lib/docker）
+- Docker相关代码好像只有几百行
 
 # overlay
 
@@ -193,12 +214,15 @@ Lesson-03 理解Docker镜像
 - 类似AUFS，不过只有两个分支
 - 但是每个分支也可以是overlay的
 - 性能优于AUFS
+- 现在需要在ext4上运行
 
 # VFS
 
 - 没有CoW，每次拷贝
 - 不需要内核特性支持
 - 浪费空间
+- 慢
+- 适宜移植到其他平台
 
 # ZFS
 
@@ -214,13 +238,14 @@ Lesson-03 理解Docker镜像
 - 设备加密（dm-crypt）
 - 快照（snapshots）
 - 延迟写入（dm-delay）
-- dm-multipath
+- Docker未使用LVS
 - Docker : thin-provisioning + snapshot
 
 # thin provisioning
 
-- dm-thin
+- dm-thin/dm-thinp
 - 如果一个block没有被写入，则不会真正分配物理磁盘
+- 可超卖
 - 数据存放在两个文件，data和metadata
 - metadata保存着快照中虚拟位移和pool中物理位移的对应关系
 - data 也叫做block pool（block：默认64KB，最大1G）
@@ -241,7 +266,6 @@ Lesson-03 理解Docker镜像
 图片来源： http://www.school.ctc-g.co.jp/columns/nakai/nakai59.html
 
 
-
 # Device Mapper
 
 ![](./images/dm-remap.png)
@@ -256,18 +280,22 @@ Lesson-03 理解Docker镜像
 # Device Mapper相关命令
 
 - docker info
-- dmsetup ls
+- losetup
 - 设备名： docker-MAJ:MIN-INO
 - MAJ： block major
 - MIN： block minor
 - INO： inode number
+
+# 演示
+
+- 见README.md
+
 
 # Device Mapper优点
 
 - 容器自己的block设备
 - 指定文件系统类型
 - 可共享block
-
 
 # Device Mapper缺点
 
@@ -276,6 +304,7 @@ Lesson-03 理解Docker镜像
 - data和metadata基于sparse文件
 - loop device而不是真正的/dev设备
 - 每启动1次容器，都需要从磁盘加载一次
+- 崩溃报告较多
 
 # 课后作业
 

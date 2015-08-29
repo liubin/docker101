@@ -74,19 +74,17 @@ docker events
 ```
 # Start a new container
 
-JOB=$(docker run -d centos /bin/sh -c "while true; do echo Hello world; sleep 1; done")
+job=$(docker run -d centos /bin/sh -c "while true; do echo Hello world; sleep 1; done")
 
-docker attach --sig-proxy=false $JOB
+docker stop $job
 
-docker stop $JOB
+docker start $job
 
-docker start $JOB
+docker restart $job
 
-docker restart $JOB
+docker kill $job
 
-docker kill $JOB
-
-docker rm $JOB
+docker rm $job
 ```
 
 ### shell 1
@@ -99,7 +97,7 @@ docker events -f 'event=stop'
 
 同上。
 
-## docker restart/pause/unpause/top
+## docker restart
 
 shell 1:
 
@@ -110,19 +108,9 @@ docker events
 shell 2
 
 ```
-docker run -d --name alwayrestart --restart=always centos /bin/sh -c "while true; do echo Hello world; sleep 1; done"
-
+docker run -d --name alwayrestart --restart=always centos /bin/sh -c "while true; do echo Hello world; sleep 2; exit -1; done"
 docker logs -f alwayrestart
 ```
-shell 3
-
-```
-docker top
-docker pause
-docker unpause
-docker kill 
-```
-
 
 ## docker diff
 
@@ -136,13 +124,13 @@ docker diff container-diff
 ## docker run -v / -e
 
 ```
-docker run -v `pwd`/test-data:/test_data -e DB_HOST=mysql centos bash
+docker run -it -v `pwd`/test-data:/test_data -e DB_HOST=mysql centos bash
 ```
 
 在容器内
 
 ```
-# evn
+# env
 # echo "text from container" > /test_data/hehe.txt
 # exit
 ```
@@ -169,60 +157,23 @@ shell 2:
 curl localhost:5000
 ```
 
-# 通过commit构建镜像
+# 添加dummy网络设备
 
 ```
-$ sudo docker run -i -t centos bash
+# docker run -it --rm centos ip link add dummy0 type dummy
+RTNETLINK answers: Operation not permitted
+# docker run -it --rm --cap-add=NET_ADMIN centos ip link add dummy0 type dummy
 ```
 
-进入容器安装Nginx
-
+# PID=host
 
 ```
-# rpm -ivh http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-centos-7-0.el7.ngx.noarch.rpm
-# yum install -y nginx
-
-# vi /etc/nginx/nginx.conf
-add "daemon off;"
+docker run -it --pid=host centos bash
 
 ```
 
-退出容器后，提交定制容器
+# net=host
 
 ```
-$ cid=$(sudo docker ps -l -q)
-$ sudo docker commit --change="CMD [\"/usr/sbin/nginx\"]" --message="Docker101 Nginx image" --author="bin liu" $cid docker101/nginx
-
+docker run -it --net=host centos bash
 ```
-
-可以通过`docker ps --no-trunc -ql`命令得到刚创建的容器的ID
-
-```
-$ sudo docker ps --no-trunc -ql
-573b314aa3846cc454ef90731629669eff646b1a6e4cc481a7a6b1423a639d12
-
-$ sudo docker ps  -ql
-573b314aa384
-
-```
-
-```
-$ sudo docker images docker101/nginx
-
-```
-
-可以使用`docker inspect`命令来查看新创建的镜像的详细信息
-
-
-```
-$ sudo docker inspect docker101/nginx
-
-```
-
-启动容器并确认
-
-```
-$ sudo docker run -d -p 80:80 docker101/nginx
-$ curl http://localhost/
-```
-
