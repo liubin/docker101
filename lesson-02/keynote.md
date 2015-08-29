@@ -14,8 +14,8 @@ Lesson-02 运行Docker容器
 # docker命令
 
 - 一个命令，两个角色
-- daemon docker -d
-- client docker run
+- daemon: docker daemon
+- client: docker run/ps/rm/images
 - docker -D？
 
 # Docker daemon(Server)
@@ -163,9 +163,8 @@ docker port web
 
 # Tips 自动删除停止的容器
 
-- docker --rm 自动清除容器
+- docker run --rm 自动清除容器
 - 和选项 -d 不兼容
-
 
 # 容器网络设置
 
@@ -333,22 +332,26 @@ drwxr-xr-x 48 root root 4096 Dec  5 04:11 ..
 
 # 对容器进行资源限制-Memory
 
-- docker run -ti -m 300M --memory-swap -1
-- docker run -ti -m 300M （--memory-swap 300M）
-- docker run -ti -m 300M --memory-swap 1G
+- -m 300M --memory-swap -1
+- -m 300M （--memory-swap 600M）
+- 全部内存 = 2 * m，swap = m
+- -m 300M --memory-swap 1G
 
 # 对容器进行资源限制-Memory
 
-- docker run -ti -m 100M --oom-kill-disable
-- docker run -ti --oom-kill-disable <- 危险行为
+- -m 100M --oom-kill-disable
+- --oom-kill-disable <- 危险行为
 
 # 对容器进行资源限制-CPU
 
 - -c, --cpu-shares=0: CPU shares （相对权重）
-- --cpu-period=0: 限制 CPU CFS (Completely Fair Scheduler)
+- --cpu-period=0: 限制 CPU完全公平调度程序 (Completely Fair Scheduler)时间
+- --cpu-quota=0: 限制 CPU CFS用量
 - --cpuset-cpus="": 可用CPU的核(0-3, 0,1)
 - --cpuset-mems="": 可利用的Memory节点 (0-3, 0,1)，NUMA系统可用
-- --cpu-quota=0: 限制 CPU CFS用量
+- 非一致性内存访问 NUMA（Non-Uniform Memory Access Architecture）
+- NUMA = SMP（对称多处理） + MPP（大规模并行处理）
+- 每个节点都有独立的CPU+内存，甚至I/O
 
 # 对容器进行资源限制-CPU share
 
@@ -356,13 +359,10 @@ drwxr-xr-x 48 root root 4096 Dec  5 04:11 ..
 - 通过-c 或 --cpu-shares 设置为大于2的值
 - 多个容器按比例分配CPU
 
-
 # 对容器进行资源限制-CPU quota
 
 - 选项 --cpu-quota 用来对容器的CPU使用做出限制
 - 默认值0表示可以使用100%的CPU
-- 单核CPU，50000表示可以使用50%的CPU
-
 
 # 对容器进行资源限制-CPU period
 
@@ -375,8 +375,8 @@ drwxr-xr-x 48 root root 4096 Dec  5 04:11 ..
 # 对容器进行资源限制-CPU set
 
 - 指定运行所在CPU
-- $ docker run -ti --cpuset-cpus="1,3" ...
-- $ docker run -ti --cpuset-cpus="0-2" ...
+- --cpuset-cpus="1,3" ...
+- --cpuset-cpus="0-2" ...
 
 # 对容器进行资源限制-Block I/O
 
