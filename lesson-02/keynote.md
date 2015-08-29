@@ -59,6 +59,10 @@ Lesson-02 运行Docker容器
 - 通过IP地址连接远程Docker
 - docker -H tcp://0.0.0.0:2375 pull ubuntu
 
+# 启动容器
+
+- docker run [OPTIONS] IMAGE[:TAG|@DIGEST] [COMMAND] [ARG...]
+
 # 演示 2
 
 - 启动我们的第2个容器
@@ -94,6 +98,12 @@ Lesson-02 运行Docker容器
 - cid=$(docker run --name name1 -d -P --cidfile=/tmp/cid.lock training/webapp python app.py)
 - docker stop $cid
 - --cidfile="some/path"
+
+# 容器的生命周期
+
+- 创建、启动（docker create/run/restart）
+- 停止（stop、kill区别？）
+- 销毁（rm）
 
 # 前台容器和后台容器
 
@@ -134,12 +144,6 @@ docker attach befb
 ^C
 ```
 
-# 容器的生命周期
-
-- 创建、启动（docker create/run/restart）
-- 停止（stop、kill区别？）
-- 销毁（rm）
-
 # stop/kill
 
 - stop，SIGTERM,超过-t(10s)则SIGKILL
@@ -148,7 +152,6 @@ docker attach befb
 
 # 常用容器命令
 
-- docker run [OPTIONS] IMAGE[:TAG|@DIGEST] [COMMAND] [ARG...]
 - docker stop/kill
 - docker ps -a|-n --no-trunc
 - docker rm
@@ -166,15 +169,6 @@ docker attach befb
 - detach： CTRL-p CTRL-q (for a quiet exit)
 - detach： CTRL-c if --sig-proxy == false
 - SIGINT： CTRL-c if --sig-proxy == true（默认）
-
-# 容器结束
-
-```bash
-docker run -d centos echo "I'm from container."
-61146a27f83a0b291cfa945135e25 ........
-docker attach 611
-You cannot attach to a stopped container, start it first
-```
 
 # 容器网络设置
 
