@@ -36,7 +36,7 @@ Lesson-03 理解Docker镜像
 
 # 仓库名称
 
-- [registry[:port]/][user_name/](repository_name:version_tag)
+- [registry[:port]/][user_name/]repository_name:version_tag
 - 默认index.docker.io:80
 
 
