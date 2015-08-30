@@ -33,6 +33,11 @@ Lesson-04 使用Dockerfile构建镜像
 - 编写Dockerfile
 - 执行docker build命令
 
+# 演示
+
+- 构建Ruby镜像
+
+
 # docker build命令
 
 - docker build -t liubin/someimg[:sometag] path
@@ -395,6 +400,51 @@ RUN pwd
 - 在FROM中执行
 - 不能通过ONBUILD执行FROM和MAINTAINER指令
 - 就像在衍生镜像的FROM指令后执行
+
+
+# 能通过docker run覆盖的镜像参数
+
+- Dockerfile的设置可覆盖
+- FROM/MAINTAINER/RUN/ADD
+- CMD/ENTRYPOINT/EXPOSE/ENV/VOLUME/USER/WORKDIR
+
+# CMD
+
+- docker run -it cnetos:7 bash
+
+# ENTRYPOINT
+
+- --entrypoint=""
+
+# EXPOSE
+
+- Dockerfile里唯一对网络设置选项
+- -P或-p
+- -p containerPort
+- -p hostPort:containerPort
+- -p ip:hostPort:containerPort
+- -p ip::containerPort
+
+
+# ENV
+
+- 预设： HOME/HOSTNAME/PATH/TERM
+- --link
+- -e "deep=purple"
+
+# VOLUME
+
+- -v=[] [host-dir:]container-dir[:rw|ro]
+- --volumes-from=""
+
+# USER
+
+- 默认为root
+- -u="": Username or UID
+
+# WORKDIR
+
+- -w=""
 
 
 # 最佳实践

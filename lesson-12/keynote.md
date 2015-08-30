@@ -25,6 +25,15 @@ Lesson-12 Docker网络
 - /etc/hosts
 - /etc/resolv.conf
 
+# 演示1
+
+- 在容器内
+- ip addr show
+- 查看/etc/hostname
+- /etc/hosts
+- /etc/resolv.conf
+
+
 # iptables基础知识
 
 - 防火墙

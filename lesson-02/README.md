@@ -14,9 +14,19 @@ null
 
 ```
 
-# 命令测试
+# 运行Docker
 
-## 后台容器
+## 1. 设置灵雀云加速
+
+```
+[docker101vm]$ sudo vi /lib/systemd/system/docker.service
+
+/usr/bin/docker daemon --registry-mirror=http://liubin.m.alauda.cn -H fd://
+
+[docker101vm]$ sudo systemctl daemon-reload
+```
+
+## 2. 后台容器
 
 shell 1:
 

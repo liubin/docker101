@@ -86,7 +86,6 @@ Lesson-06 Docker Hub和自动构建
 - 上次构建未完成请求则被忽略
 - 指定镜像tag或Git的tag、分支等进行
 
-
 # Webhooks
 
 - HTTP call-back

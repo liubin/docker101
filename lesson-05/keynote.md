@@ -15,6 +15,13 @@ Lesson-05 构建私有镜像服务器
 - 保存镜像层以及meta信息
 - 用户认证，UI等Web接口
 
+# Registry
+
+- 存储镜像
+- 控制自己的部署pipeline
+- 
+integrate image storage and distribution tightly into your in-house development workflow
+
 # Docker Distribution
 
 - 打包、传输、存储、交付内容的工具集
@@ -43,9 +50,8 @@ Lesson-05 构建私有镜像服务器
 # 使用私有Registry
 
 ```bash
-# docker pull node
-# docker tag node myregistry.com:5000/node
-# docker push myregistry.com:5000/node
+# docker tag centos:7 myregistry.com:5000/centos:7
+# docker push myregistry.com:5000/centos:7
 ```
 
 # 查看Registry内部
@@ -55,23 +61,18 @@ $ sudo docker exec -it registry bash
 cd /tmp
 ```
 
+# 演示
+
+- 启动Registry
+- 向Registry push镜像
+
+
 # Storage Driver
 
 - 存储本身交给Storage Driver
 - 默认为本地文件系统，适合开发或者小规模
-- 也可以使用云存储，如S3、Azure和Ceph等
+- 也可以使用云存储，如S3、Azure和Ceph等，以及阿里云OSS
 - 甚至通过实现Storage API自定义storage backend
-
-# Notification机制
-
-- webhooks
-- log和report
-
-# 安全对策
-
-- 支持TLS
-- 通过Nginx等进行basic authentication
-- 官方文档也有其他方式的认证和授权实现说明
 
 
 # 将数据保存到Volume
@@ -89,6 +90,17 @@ $ docker run -d -p 5000:5000 \
   --restart=always --name registry registry:2
 ```
 
+# Notification机制
+
+- webhooks/notification
+- log和report
+- email/bugsnap/newrelic
+
+# 安全对策
+
+- 支持TLS
+- 通过Nginx等进行basic authentication
+- 官方文档也有其他方式的认证和授权实现说明
 
 # 在公共网络上使用
 

@@ -27,9 +27,9 @@ Lesson-10 Docker Machine
 - 配置Docker
 - 配置客户端环境变量
 
-# 
+# Docker Machine
 
-- 配置好之后，我们可以
+- 远程控制主机：
 - 启动、停止和重启
 - 升级Docker
 - 配置客户端环境变量以和Daemon通信

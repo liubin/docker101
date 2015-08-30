@@ -33,6 +33,10 @@ Lesson-15 延伸阅读
 - There is no platform without ecosystem.
 - by Solomon Hykes @DockerCon2015
 
+# 存储
+
+- Flocker
+
 # PaaS
 
 - Dokku
@@ -43,8 +47,6 @@ Lesson-15 延伸阅读
 
 - Mesos
 - Kubernetes
-- Rancher
-
 
 # 管理界面
 
@@ -53,12 +55,12 @@ Lesson-15 延伸阅读
 - shipyard
 - Portus
 
-
 # 配置管理
 
 - chef
 - puppet
 - salt
+- Ansible
 
 # CI
 
