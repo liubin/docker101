@@ -11,11 +11,11 @@ docker pull wordpress
 
 docker images
 
+docker images wordpress
+
 docker history wordpress
 
 docker inspect wordpress
-
-docker inspect wordpress | jq .
 
 docker inspect  -f "{{.Config}}" wordpress
 
@@ -25,19 +25,16 @@ docker inspect wordpress | jq ".[0].Config.Cmd"
 
 docker inspect wordpress | jq ".[0].Config.Entrypoint"
 
-docker images tag wordpress liubin/wordpress
 
-docker tag wordpress liubin/wordpress
+docker login index.alauda.cn
+
+docker tag busybox index.alauda.cn/liubin/test
 
 docker images
 
-docker login
+docker push index.alauda.cn/liubin/test
 
-docker push liubin/wordpress
-
-docker logout
-
-docker rmi wordpress
+docker rmi index.alauda.cn/liubin/test
 
 ```
 

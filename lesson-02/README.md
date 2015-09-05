@@ -24,6 +24,7 @@ null
 /usr/bin/docker daemon --registry-mirror=http://liubin.m.alauda.cn -H fd://
 
 [docker101vm]$ sudo systemctl daemon-reload
+[docker101vm]$ sudo systemctl restart docker
 ```
 
 ## 2. 后台容器
@@ -68,6 +69,12 @@ docker rm web
 docker run --name web -d -P training/webapp python app.py
 docker kill web
 docker rm web
+
+docker run --name web -d -P training/webapp python app.py
+docker kill -s SIGTERM
+
+docker run --name web -d -P training/webapp python app.py
+docker kill -s SIGKILL
 
 ```
 

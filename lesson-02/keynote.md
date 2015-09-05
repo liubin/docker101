@@ -163,7 +163,7 @@ docker port web
 
 - stop，SIGTERM,超过-t(10s)则SIGKILL
 - kill，SIGKILL
-- kill -s, --signal="KILL"
+- kill -s, --signal="SIGKILL"
 
 # 常用容器命令
 
