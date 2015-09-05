@@ -1,5 +1,5 @@
 web:
-  image: "index.alauda.cn/library/wordpress:latest"
+  image: wordpress
   links:
     - db:mysql
   ports:
