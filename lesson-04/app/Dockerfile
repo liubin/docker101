@@ -5,16 +5,16 @@ MAINTAINER bin liu <liubin0329@gmail.com>
 
 LABEL version="0.0.1" lang="myapp"
 
-RUN mkdir /app
+ADD app.rb /app/app.rb
+
 WORKDIR /app
 
-# NOT WORK!!!
-# ADD app.rb /app
-ADD app.rb /app/app.rb
+RUN gem sources --remove https://rubygems.org/ \
+  && gem sources -a http://ruby.taobao.org/
 
 RUN gem install sinatra
 
 EXPOSE 4567
 
-CMD ruby app.rb
+CMD ["ruby", "app.rb"]
 
