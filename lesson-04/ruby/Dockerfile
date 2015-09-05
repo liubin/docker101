@@ -20,7 +20,7 @@ RUN cd /tmp \
     && rm -rf /tmp/ruby-2.2.2*
 
 # skip installing gem documentation
-RUN echo 'install: --no-document\nupdate: --no-document' >> "$HOME/.gemrc"
+RUN echo -e 'install: --no-document\nupdate: --no-document' >> "$HOME/.gemrc"
 
 ENV GEM_HOME /usr/local/bundle
 ENV PATH $GEM_HOME/bin:$PATH
