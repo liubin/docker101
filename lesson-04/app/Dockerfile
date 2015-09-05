@@ -5,7 +5,7 @@ MAINTAINER bin liu <liubin0329@gmail.com>
 
 LABEL version="0.0.1" lang="myapp"
 
-ADD app.rb /app/app.rb
+COPY app.rb /app/app.rb
 
 WORKDIR /app
 
