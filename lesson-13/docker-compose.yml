@@ -18,3 +18,4 @@ db:
     - MYSQL_ROOT_PASSWORD: password
   volumes:
     - /var/lib/mysql:10
+  size: M
