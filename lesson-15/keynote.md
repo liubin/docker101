@@ -37,11 +37,17 @@ Lesson-15 延伸阅读
 
 - Flocker
 
+![](./images/flocker.png)
+
 # PaaS
 
 - Dokku
 - Deis
 - Flynn
+
+# Deis
+
+![](./images/deis.png)
 
 # 编排
 
