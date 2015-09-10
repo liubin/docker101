@@ -78,6 +78,10 @@ https://hyper.sh/
 
 http://www.ubuntu.com/cloud/tools/lxd
 
+## Clear Linux/Clear Containers
+
+https://clearlinux.org/features/clear-containers
+
 # UI管理
 
 ## seagull
