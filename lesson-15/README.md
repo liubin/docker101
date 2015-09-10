@@ -29,6 +29,8 @@ https://github.com/ClusterHQ/flocker
 
 ## Flynn
 
+https://flynn.io/
+
 ## Deis
 
 - https://github.com/deis/deis
@@ -40,11 +42,17 @@ https://github.com/ClusterHQ/flocker
 
 ## Mesos
 
+http://mesos.apache.org/
+
 ## Kubernetes（K8s）
+
+https://github.com/kubernetes/kubernetes
 
 # CI
 
 ## Drone
+
+https://drone.io/
 
 # 容器OS
 
@@ -66,6 +74,9 @@ https://hyper.sh/
 
 ## VMware Photon
 
+## LXD
+
+http://www.ubuntu.com/cloud/tools/lxd
 
 # UI管理
 
