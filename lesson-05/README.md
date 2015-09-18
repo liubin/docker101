@@ -162,19 +162,26 @@ cp ~/docker101/lesson-05/certs/domain.crt /etc/docker/certs.d/private-registry.c
 ```
 127.0.0.1 private-registry.com
 ```
+修改Docker守护进程参数
+
+```
+vi /lib/systemd/system/docker.service
+
+ExecStart=/usr/bin/docker daemon --insecure-registry private-registry.com:5000 -H fd://
+```
 
 ### 在命令行login
 
 ```
-# docker login -u liubin -p 12345678 -e liubin0329@gamil.com private-registry.com:5000
+docker login -u liubin -p 12345678 -e liubin0329@gamil.com private-registry.com:5000
 
-# docker tag centos:7 private-registry.com:5000/liubin/centos7
+docker tag centos:7 private-registry.com:5000/liubin/centos7
 
-# docker push private-registry.com:5000/liubin/centos7
+docker push private-registry.com:5000/liubin/centos7
 
-# docker tag centos:7 private-registry.com:5000/centos7:tag1
+docker tag centos:7 private-registry.com:5000/centos7:tag1
 
-# docker push private-registry.com:5000/centos7:tag1
+docker push private-registry.com:5000/centos7:tag1
 
 
 ```
