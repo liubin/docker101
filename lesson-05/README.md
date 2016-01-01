@@ -109,7 +109,7 @@ docker run -d -p 6000:5000 --restart=always --name registry \
 ```
 docker login private-registry.com:6000
 
-docker tag centos:7 private-registry.com:6000/basic-auth-img
+docker tag busybox private-registry.com:6000/basic-auth-img
 
 docker push private-registry.com:6000/basic-auth-img
 
@@ -133,13 +133,12 @@ git clone https://github.com/liubin/Portus.git
 cd Portus
 ```
 
-将证书拷贝到系统目录
+修改Docker守护进程参数
 
 ```
-mkdir -p /etc/docker/certs.d/private-registry.com:5000/
+vi /lib/systemd/system/docker.service
 
-cp ~/docker101/lesson-05/certs/domain.crt /etc/docker/certs.d/private-registry.com:5000/ca.crt
-
+ExecStart=/usr/bin/docker daemon --insecure-registry private-registry.com:5000 -H fd://
 ```
 
 启动
@@ -162,26 +161,20 @@ cp ~/docker101/lesson-05/certs/domain.crt /etc/docker/certs.d/private-registry.c
 ```
 127.0.0.1 private-registry.com
 ```
-修改Docker守护进程参数
 
-```
-vi /lib/systemd/system/docker.service
-
-ExecStart=/usr/bin/docker daemon --insecure-registry private-registry.com:5000 -H fd://
-```
 
 ### 在命令行login
 
 ```
 docker login -u liubin -p 12345678 -e liubin0329@gamil.com private-registry.com:5000
 
-docker tag centos:7 private-registry.com:5000/liubin/centos7
+docker tag busybox private-registry.com:5000/liubin/busybox
 
-docker push private-registry.com:5000/liubin/centos7
+docker push private-registry.com:5000/liubin/busybox
 
-docker tag centos:7 private-registry.com:5000/centos7:tag1
+docker tag busybox private-registry.com:5000/busybox:tag1
 
-docker push private-registry.com:5000/centos7:tag1
+docker push private-registry.com:5000/busybox:tag1
 
 
 ```
