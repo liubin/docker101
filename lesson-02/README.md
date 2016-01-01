@@ -194,3 +194,13 @@ docker run -it --pid=host centos bash
 ```
 docker run -it --net=host centos bash
 ```
+
+# 视频地址
+
+![](http://video.kk8.cdn.bj.xs3cnc.com/2c/i/covers/Docker4.jpg)
+* [什么是Docker容器](http://www.kaikeba.com/kkb/kaikeba/content_video.html?vId=2724)
+![](http://video.kk8.cdn.bj.xs3cnc.com/2c/i/covers/Docker5.jpg)
+* [深入Docker容器](http://www.kaikeba.com/kkb/kaikeba/content_video.html?vId=2725)
+![](http://video.kk8.cdn.bj.xs3cnc.com/2c/i/covers/Docker6.jpg)
+* [Docker容器的生命周期管理](http://www.kaikeba.com/kkb/kaikeba/content_video.html?vId=2726)
+![](http://video.kk8.cdn.bj.xs3cnc.com/2c/i/covers/Docker7.jpg)

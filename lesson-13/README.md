@@ -81,3 +81,12 @@ http://docs.alauda.cn/
 - Alauda命令行
 
 http://docs.alauda.cn/
+
+
+# 视频地址
+
+* [灵雀云简介](http://www.kaikeba.com/kkb/kaikeba/content_video.html?vId=2747)
+![](http://video.kk8.cdn.bj.xs3cnc.com/2c/i/covers/Docker28.jpg)
+* [使用灵雀云命令行工具](http://www.kaikeba.com/kkb/kaikeba/content_video.html?vId=2748)
+![](http://video.kk8.cdn.bj.xs3cnc.com/2c/i/covers/Docker29.jpg)
+

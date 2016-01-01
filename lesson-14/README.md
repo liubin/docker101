@@ -69,6 +69,10 @@ sudo docker kill $jk
 ```
 
 
+# 视频地址
+
+* [基于Docker进行持续集成](http://www.kaikeba.com/kkb/kaikeba/content_video.html?vId=2749)
+![](http://video.kk8.cdn.bj.xs3cnc.com/2c/i/covers/Docker30.jpg)
 
 
 

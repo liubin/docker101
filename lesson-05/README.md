@@ -194,3 +194,11 @@ https://docs.docker.com/registry/spec/api/
   - https://docs.docker.com/registry/authentication/
   - https://github.com/docker/distribution/blob/master/docs/deploying.md
 
+# 视频地址
+
+* [构建私有镜像服务器](http://www.kaikeba.com/kkb/kaikeba/content_video.html?vId=2731)
+![](http://video.kk8.cdn.bj.xs3cnc.com/2c/i/covers/Docker12.jpg)
+* [为私有镜像服务添加Basic认证...](http://www.kaikeba.com/kkb/kaikeba/content_video.html?vId=2732)
+![](http://video.kk8.cdn.bj.xs3cnc.com/2c/i/covers/Docker13.jpg)
+* [为私有镜像服务添加Token认证...](http://www.kaikeba.com/kkb/kaikeba/content_video.html?vId=2733)
+![](http://video.kk8.cdn.bj.xs3cnc.com/2c/i/covers/Docker14.jpg)

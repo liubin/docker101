@@ -184,4 +184,10 @@ hello world
 
 ```
 
+# 视频地址
+
+* [认识Docker镜像](http://www.kaikeba.com/kkb/kaikeba/content_video.html?vId=2727)
+![](http://video.kk8.cdn.bj.xs3cnc.com/2c/i/covers/Docker8.jpg)
+* [手工构建Docker镜像](http://www.kaikeba.com/kkb/kaikeba/content_video.html?vId=2728)
+![](http://video.kk8.cdn.bj.xs3cnc.com/2c/i/covers/Docker9.jpg)
 

@@ -1,16 +1,5 @@
 # Lesson-01 课程简介及环境设置
 
-视频地址：
-
-* [Docker基本概念](http://www.kaikeba.com/kkb/kaikeba/content_video.html?vId=2720)
-![](http://video.kk8.cdn.bj.xs3cnc.com/2c/i/covers/Docker1.jpg)
-* [Docker实现原理](http://www.kaikeba.com/kkb/kaikeba/content_video.html?vId=2721)
-![](http://video.kk8.cdn.bj.xs3cnc.com/2c/i/covers/Docker2.jpg)
-* [Docker组件介绍](http://www.kaikeba.com/kkb/kaikeba/content_video.html?vId=2722)
-![](http://video.kk8.cdn.bj.xs3cnc.com/2c/i/covers/Docker3.jpg)
-* [Docker实操环境介绍](http://www.kaikeba.com/kkb/kaikeba/content_video.html?vId=2723)
-
-
 # 安装
 
 ## Clone仓库
@@ -118,6 +107,16 @@ https://hashicorp.com/
 
 https://www.docker.com/toolbox
 
+
+# 视频地址
+
+* [Docker基本概念](http://www.kaikeba.com/kkb/kaikeba/content_video.html?vId=2720)
+![](http://video.kk8.cdn.bj.xs3cnc.com/2c/i/covers/Docker1.jpg)
+* [Docker实现原理](http://www.kaikeba.com/kkb/kaikeba/content_video.html?vId=2721)
+![](http://video.kk8.cdn.bj.xs3cnc.com/2c/i/covers/Docker2.jpg)
+* [Docker组件介绍](http://www.kaikeba.com/kkb/kaikeba/content_video.html?vId=2722)
+![](http://video.kk8.cdn.bj.xs3cnc.com/2c/i/covers/Docker3.jpg)
+* [Docker实操环境介绍](http://www.kaikeba.com/kkb/kaikeba/content_video.html?vId=2723)
 
 
 

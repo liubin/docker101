@@ -102,4 +102,10 @@ https://www.opencontainers.org/
 
 http://runc.io/
 
+# 视频地址
+
+* [网络、存储和PaaS平台](http://www.kaikeba.com/kkb/kaikeba/content_video.html?vId=2750)
+![](http://video.kk8.cdn.bj.xs3cnc.com/2c/i/covers/Docker31.jpg)
+* [容器OS和容器标准化](http://www.kaikeba.com/kkb/kaikeba/content_video.html?vId=2751)
+![](http://video.kk8.cdn.bj.xs3cnc.com/2c/i/covers/Docker32.jpg)
 
