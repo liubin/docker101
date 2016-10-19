@@ -1,7 +1,7 @@
 # Docker入门与实践
 
 Lesson-13 Docker CaaS
-刘斌@OneAPM
+刘斌@Alauda
 2015年8月
 
 # 本节概要

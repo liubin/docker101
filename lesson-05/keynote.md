@@ -1,7 +1,7 @@
 # Docker入门与实践
 
 Lesson-05 构建私有镜像服务器
-刘斌@OneAPM
+刘斌@Alauda
 2015年8月
 
 # 本节概要

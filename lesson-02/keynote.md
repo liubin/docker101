@@ -1,7 +1,7 @@
 # Docker入门与实践
 
 Lesson-02 运行Docker容器
-刘斌@OneAPM
+刘斌@Alauda
 2015年8月
 
 # 本节概要
